@@ -1,0 +1,26 @@
+<project basedir="." default="runTest" name="Ant file for TestNG">
+
+<property name="src" location="src"/>
+<property name="bin" location="bin"/>
+<property name="libs" location="libs"/>
+
+<path id="class.path">
+	<pathelement location="${libs}/testng-6.8.jar"/>
+	<pathelement location="${libs}/selenium-java-2.40.0-srcs.jar"/>
+	<pathelement location="${libs}/selenium-java-2.40.0.jar"/>
+	<pathelement location="${libs}"/>
+</path>
+
+<taskdef name="test" classname="AntPackage.AntTest">
+		<classpath>
+			<pathelement location="libs/testng-6.8.jar"/>
+		</classpath>
+</taskdef>
+
+<target name="runTest">
+	<mkdir dir="testng_output"/>
+	<testng outputdir="testng_output" classpathref="class.path">
+		<xmlfileset dir="." includes="testng.xml"/>
+	</testng>
+</target>
+</project>
